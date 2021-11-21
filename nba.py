@@ -52,7 +52,7 @@ parser.add_argument('--playing_today', type=str, required=False,
                     help='is the team playing today')
 parser.add_argument('--next_game', type=str, required=False,
                     help='next game')
-parser.add_argument('--list_teams', required=False, action="store_true",
+parser.add_argument('-ls', '--list_teams', required=False, action="store_true",
                     help='list team abbreviations')
 
 
