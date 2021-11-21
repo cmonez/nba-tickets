@@ -1,4 +1,8 @@
+from bs4 import BeautifulSoup
 import argparse
+
+
+soup = BeautifulSoup("https://www.basketball-reference.com/teams/GSW/2022_games.html", 'html.parser')
 
 parser = argparse.ArgumentParser(description='Get ticket info and NBA results.')
 
