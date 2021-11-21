@@ -3,7 +3,41 @@ import argparse
 parser = argparse.ArgumentParser(description='Get ticket info and NBA results.')
 
 def print_nba_teams():
-    print("Hello")
+    teams = {
+    'ATL':	'Atlanta Hawks',
+    'BKN':	'Brooklyn Nets',
+    'BOS':	'Boston Celtics',
+    'CHA':	'Charlotte Hornets',
+    'CHI':	'Chicago Bulls',
+    'CLE':	'Cleveland Cavaliers',
+    'DAL':	'Dallas Mavericks',
+    'DEN':	'Denver Nuggets',
+    'DET':	'Detroit Pistons',
+    'GSW':	'Golden State Warriors',
+    'HOU':	'Houston Rockets',
+    'IND':	'Indiana Pacers',
+    'LAC':	'Los Angeles Clippers',
+    'LAL':	'Los Angeles Lakers',
+    'MEM':	'Memphis Grizzlies',
+    'MIA':	'Miami Heat',
+    'MIL':	'Milwaukee Bucks',
+    'MIN':	'Minnesota Timberwolves',
+    'NOP':	'New Orleans, Pelicans',
+    'NYK':	'New York, Knicks',
+    'OKC':	'Oklahoma City, Thunder',
+    'ORL':	'Orlando Magic',
+    'PHI':	'Philadelphia 76ers',
+    'PHX':	'Phoenix Suns',
+    'POR':	'Portland Trail Blazers',
+    'SAC':	'Sacramento Kings',
+    'SAS':	'San Antonio Spurs',
+    'TOR':	'Toronto Raptors',
+    'UTA':	'Utah Jazz',
+    'WAS':	'Washington Wizards'
+    }
+    print(*teams.items(), sep='\n')
+
+
 
 parser.add_argument('--team_name', type=str, required=True)
 
@@ -11,12 +45,19 @@ parser.add_argument('--results', type=str, required=False,
                     help='get the results for a team')
 parser.add_argument('--prices', type=str, required=False,
                     help='get ticket prices for current team')
-parser.add_argument('--are_playing', type=str, required=False,
+parser.add_argument('--playing_today', type=str, required=False,
                     help='is the team playing today')
 parser.add_argument('--next_game', type=str, required=False,
                     help='next game')
+parser.add_argument('--list', required=False, default='nah',
+                    help='next game')
+
 
 args = parser.parse_args()
+
+if args.list:
+    print_nba_teams()
+
 print('Hello,', args.team_name)
 
 
