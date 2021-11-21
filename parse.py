@@ -14,5 +14,10 @@ req = requests.get(gsw_url, headers)
 soup = BeautifulSoup(req.content, 'html.parser')
 
 table = soup.find("tbody")
+rows = table.findChildren("tr")
 
-print(table.prettify())
+def extract_opposing_team_name(node):
+  opposing_score = node.find(attrs={"data-stat" : "opp_name"})
+  print(opposing_score.text)
+
+extract_opposing_team_name(rows[0])
