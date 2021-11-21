@@ -2,17 +2,21 @@ import argparse
 
 parser = argparse.ArgumentParser(description='Get ticket info and NBA results.')
 
-parser.add_argument('integers', metavar='N', type=int, nargs='+',
-                    help='an integer for the accumulator')
-parser.add_argument('--results', dest='accumulate', action='store_const',
-                    const=sum, default=max,
-                    help='sum the integers (default: find the max)')
-parser.add_argument('--prices', action='store_const',
-                    const=sum, default=max,
-                    help='get price for current team')
-parser.add_argument('--are_playing', dest='accumulate', action='store_const',
-                    const=sum, default=max,
-                    help='sum the integers (default: find the max)')
+def print_nba_teams():
+    print("Hello")
+
+parser.add_argument('--team_name', type=str, required=True)
+
+parser.add_argument('--results', type=str,
+                    help='get the results for a team')
+parser.add_argument('--prices', type=str,
+                    help='get ticket prices for current team')
+parser.add_argument('--are_playing', type=bool,
+                    help='is the team playing today')
+parser.add_argument('--next_game', type=str,
+                    help='next game')
 
 args = parser.parse_args()
-print(args.accumulate(args.integers))
+print('Hello,', args.team_name)
+
+
