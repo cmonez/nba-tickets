@@ -3,6 +3,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Get ticket info and NBA results.')
 
 def print_nba_teams():
+    teams_string = 'Team | Name\n'
     teams = {
     'ATL':	'Atlanta Hawks',
     'BKN':	'Brooklyn Nets',
@@ -35,8 +36,9 @@ def print_nba_teams():
     'UTA':	'Utah Jazz',
     'WAS':	'Washington Wizards'
     }
-    print(*teams.items(), sep='\n')
-
+    for key, value in teams.items():
+        teams_string += f"{key}  | {value}\n"
+    print(teams_string)
 
 
 parser.add_argument('--team_name', type=str, required=True)
