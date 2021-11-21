@@ -38,11 +38,11 @@ def print_nba_teams():
     }
     for key, value in teams.items():
         teams_string += f"{key}  | {value}\n"
-    print('works')
-    # print(teams_string)
+    print(teams_string)
 
 
-parser.add_argument('team_name', type=str)
+parser.add_argument('--team_name', type=str,
+                    help='specify a team name')
 
 parser.add_argument('--results', type=str, required=False,
                     help='get the results for a team')
@@ -52,13 +52,13 @@ parser.add_argument('--playing_today', type=str, required=False,
                     help='is the team playing today')
 parser.add_argument('--next_game', type=str, required=False,
                     help='next game')
-parser.add_argument('--list', required=False,  default='nah',
+parser.add_argument('--list', required=False,  default='nah', action="store_true",
                     help='next game')
 
 
 args = parser.parse_args()
 
-if args.list:
+if args.list == True:
     print_nba_teams()
 
 print('Hello,', args.team_name)
