@@ -44,7 +44,7 @@ def print_nba_teams():
 parser.add_argument('--team_name', type=str,
                     help='specify a team name (team abbreviation)')
 
-parser.add_argument('--results', type=str, required=False,
+parser.add_argument('--r', '--results', required=False, action="store_true", dest="results",
                     help='get the results for a team')
 parser.add_argument('--prices', type=str, required=False,
                     help='get ticket prices for current team')
@@ -52,15 +52,16 @@ parser.add_argument('--playing_today', type=str, required=False,
                     help='is the team playing today')
 parser.add_argument('--next_game', type=str, required=False,
                     help='next game')
-parser.add_argument('-ls', '--list_teams', required=False, action="store_true",
+parser.add_argument('-ls', '--list_teams', required=False, action="store_true", dest="list_teams",
                     help='list team abbreviations')
 
-
 args = parser.parse_args()
+team = args.team_name.upper()
 
 if args.list_teams == True:
     print_nba_teams()
 
-print('Hello,', args.team_name)
+if args.results == True:
+    print("WORKS")
 
 

@@ -68,4 +68,4 @@ def get_results(team_name):
     else:
       declare_win_statement(soup, row)
 
-get_results("ORL")
+get_results("NOP")
