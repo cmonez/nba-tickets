@@ -63,6 +63,12 @@ if args.list_teams == True:
     print_nba_teams()
 
 if args.results == True:
+    if team == "BKN":
+     team = "BRK"
+    if team == "CHA":
+        team = "CHO"
+    if team == "PHX":
+        team = "PHO"
     get_results(team)
 
 
