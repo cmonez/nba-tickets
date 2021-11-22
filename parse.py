@@ -8,13 +8,12 @@ headers = {
     'Access-Control-Max-Age': '3600',
     'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0'
     }
-gsw_url = "https://www.basketball-reference.com/teams/GSW/2022_games.html"
 
-req = requests.get(gsw_url, headers)
-soup = BeautifulSoup(req.content, 'html.parser')
-
-table = soup.find("tbody")
-rows = table.findChildren("tr")
+def get_soup(team):
+  bball_url = f"https://www.basketball-reference.com/teams/{team}/2022_games.html"
+  req = requests.get(bball_url, headers)
+  soup = BeautifulSoup(req.content, 'html.parser')
+  return soup
 
 def get_team_name(node):
   title = node.find("div", id="meta")
@@ -57,10 +56,16 @@ def has_game_happened(node):
   return True
 
 
-for row in rows:
-  if row.has_attr("class"):
-    continue
-  elif has_game_happened(row) == False:
-    break
-  else:
-    declare_win_statement(soup, row)
+def get_results(team_name):
+  soup = get_soup(team_name)
+  table = soup.find("tbody")
+  rows = table.findChildren("tr")
+  for row in rows:
+    if row.has_attr("class"):
+      continue
+    elif has_game_happened(row) == False:
+      break
+    else:
+      declare_win_statement(soup, row)
+
+get_results("ORL")
