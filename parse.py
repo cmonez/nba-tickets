@@ -50,10 +50,17 @@ def declare_win_statement(soup, node):
   text = f"{home_team_name}: {home_team_score} - {opposing_team}: {opposing_score} -  {result}"
   print(text)
 
-declare_win_statement(soup, rows[0])
+def has_game_happened(node):
+  home_team_score = get_home_team_score(node)
+  if (len(home_team_score) == 0):
+    return False
+  return True
+
 
 for row in rows:
   if row.has_attr("class"):
     continue
+  elif has_game_happened(row) == False:
+    break
   else:
     declare_win_statement(soup, row)
