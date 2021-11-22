@@ -20,36 +20,37 @@ def get_team_name(node):
   title = node.find("div", id="meta")
   name = title.find(attrs={"itemprop" : "name"})
   spans = name.find_all("span")
-  print(spans[1].text)
+  return spans[1].text
 
-def extract_opposing_team_name(node):
+def get_opposing_team_name(node):
   opposing_team_name = node.find(attrs={"data-stat" : "opp_name"})
   return opposing_team_name.text
 
-def extract_home_team_score(node):
+def get_home_team_score(node):
   opposing_team_score = node.find(attrs={"data-stat" : "pts"})
   return opposing_team_score.text
 
-def extract_opposing_team_score(node):
+def get_opposing_team_score(node):
   opposing_team_score = node.find(attrs={"data-stat" : "opp_pts"})
   return opposing_team_score.text
 
-def extract_result(node):
+def get_result(node):
   game_result = node.find(attrs={"data-stat" : "game_result"}).text
   if(game_result == 'W'):
       return 'WIN'
   else:
     return 'LOSS'
 
-def declare_win_statement(node):
+def declare_win_statement(soup, node):
   home_team_name = get_team_name(soup)
-  opposing_team = extract_opposing_team_name(node)
-  opposing_score = extract_opposing_team_score(node)
-  result = extract_result(node)
-  # print f"1{home_team}: {home_team_score} - {opposing_team}: {opposing_score} -  {result}"
+  home_team_score = get_home_team_score(node)
+  opposing_team = get_opposing_team_name(node)
+  opposing_score = get_opposing_team_score(node)
+  result = get_result(node)
+  text = f"{home_team_name}: {home_team_score} - {opposing_team}: {opposing_score} -  {result}"
+  print(text)
 
-
-get_team_name(soup)
+declare_win_statement(soup, rows[0])
 # declare_win_statement(rows[0])
 # extract_opposing_team_name(rows[0])
 # extract_opposing_team_score(rows[0])
