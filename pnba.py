@@ -49,6 +49,16 @@ def declare_win_statement(soup, node):
   text = f"{home_team_name}: {home_team_score} - {opposing_team}: {opposing_score} -  {result}"
   print(text)
 
+def get_date(node):
+  next_game_date = node.find(attrs={"data-stat" : "date_game"})
+  return next_game_date.text
+
+def next_game(soup, node):
+  home_team_name = get_team_name(soup)
+  opposing_team = get_opposing_team_name(node)
+  text = f"NEXT GAME: {home_team_name} vs. {opposing_team} - {get_date(node)}"
+  print(text)
+
 def has_game_happened(node):
   home_team_score = get_home_team_score(node)
   if (len(home_team_score) == 0):
@@ -67,3 +77,16 @@ def get_results(team_name):
       break
     else:
       declare_win_statement(soup, row)
+
+def get_next_game(team_name):
+  soup = get_soup(team_name)
+  table = soup.find("tbody")
+  rows = table.findChildren("tr")
+  for row in rows:
+    if row.has_attr("class"):
+      continue
+    elif has_game_happened(row) == False:
+      next_game(soup, row)
+      break
+    else:
+      continue

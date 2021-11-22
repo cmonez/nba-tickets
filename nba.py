@@ -1,5 +1,5 @@
 import argparse
-from pnba import get_results
+from pnba import get_next_game, get_results
 
 parser = argparse.ArgumentParser(description='Get ticket info and NBA results.')
 
@@ -47,12 +47,16 @@ parser.add_argument('--team_name', type=str,
 
 parser.add_argument('--r', '--results', required=False, action="store_true", dest="results",
                     help='get the results for a team')
+
+parser.add_argument('--ng', '--next_game', required=False, action="store_true", dest="ng",
+                    help='next game')
+
 parser.add_argument('--prices', type=str, required=False,
                     help='get ticket prices for current team')
+
 parser.add_argument('--playing_today', type=str, required=False,
                     help='is the team playing today')
-parser.add_argument('--next_game', type=str, required=False,
-                    help='next game')
+
 parser.add_argument('-ls', '--list_teams', required=False, action="store_true", dest="list_teams",
                     help='list team abbreviations')
 
@@ -70,5 +74,8 @@ if args.results == True:
     if team == "PHX":
         team = "PHO"
     get_results(team)
+
+if args.ng == True:
+    get_next_game(team)
 
 
