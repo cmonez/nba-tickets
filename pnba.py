@@ -67,5 +67,3 @@ def get_results(team_name):
       break
     else:
       declare_win_statement(soup, row)
-
-get_results("NOP")

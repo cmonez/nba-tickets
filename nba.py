@@ -1,4 +1,5 @@
 import argparse
+from pnba import get_results
 
 parser = argparse.ArgumentParser(description='Get ticket info and NBA results.')
 
@@ -62,6 +63,6 @@ if args.list_teams == True:
     print_nba_teams()
 
 if args.results == True:
-    print("WORKS")
+    get_results(team)
 
 
