@@ -51,7 +51,9 @@ def declare_win_statement(soup, node):
   print(text)
 
 declare_win_statement(soup, rows[0])
-# declare_win_statement(rows[0])
-# extract_opposing_team_name(rows[0])
-# extract_opposing_team_score(rows[0])
-# extract_result(rows[0])
+
+for row in rows:
+  if row.has_attr("class"):
+    continue
+  else:
+    declare_win_statement(soup, row)
